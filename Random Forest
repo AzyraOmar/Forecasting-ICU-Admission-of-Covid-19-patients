@@ -62,6 +62,8 @@ pred = predict(rf, newdata=test[-231])
 cm = table(pred,test[,231])
 cm
 
+confusionMatrix(cm)
+
 false_positives<-cm[1,2]
 false_positives
 false_negatives<-cm[2,1]
@@ -71,13 +73,8 @@ true_positives<-cm[1,1]
 true_positives
 true_negatives<-cm[2,2]
 true_negatives
-
-accuracy <- (true_positives + true_negatives) / (true_positives + true_negatives + false_positives + false_negatives)
-accuracy
   
 specificity(cm)
-
-sensitivity(cm)
 
 recall <-true_positives/ (true_positives + false_negatives)
 recall
