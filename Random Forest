@@ -59,22 +59,23 @@ rf <- randomForest(
 
 pred = predict(rf, newdata=test[-231])
 
-cm = table(pred,test[,231])
-cm
+cm_rf = table(pred,test[,231])
+cm_rf
 
-confusionMatrix(cm)
+confusionMatrix(cm_rf)
 
-false_positives<-cm[1,2]
+false_positives<-cm_rf[1,2]
 false_positives
-false_negatives<-cm[2,1]
+false_negatives<-cm_rf[2,1]
 false_negatives
 
-true_positives<-cm[1,1]
+true_positives<-cm_rf[1,1]
 true_positives
-true_negatives<-cm[2,2]
+true_negatives<-cm_rf[2,2]
 true_negatives
   
-specificity(cm)
+specificity(cm_rf)
+sensitivity(cm_rf)
 
 recall <-true_positives/ (true_positives + false_negatives)
 recall
