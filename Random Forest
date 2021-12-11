@@ -47,7 +47,7 @@ colSums(is.na(data))
 #Step 5 : Data Modelling
 # Splitting data into train
 # and test data
-sample = sample.split(data$ICU, SplitRatio = .75)
+sample = sample.split(data$ICU, SplitRatio = .70)
 train = subset(data, sample == TRUE)
 test  = subset(data, sample == FALSE)
 
