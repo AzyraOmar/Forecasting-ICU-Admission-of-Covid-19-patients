@@ -1,3 +1,11 @@
+##Install and load the requires packages
+#Step 1  Loading required packages
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(caretEnsemble)
+library(psych)
+library(Amelia)
 library(mice)
 library(GGally)
 library(rpart)
@@ -15,14 +23,14 @@ library(caret)
 data<- read.csv("C:/Users/norazyrabinti.omar/Documents/MS DS/10. Machine Learning for Data Science/icu.csv")
 
 #Setting outcome variables as categorical
-data$ICU <- factor(data$ICU, levels = c(0,1), labels = c("False", "True"))
+data$ICU <- factor(data$ICU, levels = c(1,0), labels = c("ICU", "nO ICU"))
 data$ICU
 
 #Studying the Data Set
 #Step 3 : Studying the structure of the data
 str(data)
 head(data)
-#describe(data)
+describe(data)
 
 #Step 4: Data Cleaning
 is.na(data)
@@ -50,28 +58,29 @@ y_pred <- predict(NB_model, newdata = test_cl)
 
 #Step 6 : Model Evaluation
 # Confusion Matrix
-cm <- table(test_cl$ICU, y_pred)
-cm<-as.matrix(cm)
+cm <- table(y_pred, test_cl$ICU)
 cm
 
 # Model Evaluation
 confusionMatrix(cm)
 
-false_positives<-cm[2,1]
+false_positives<-cm[1,2]
 false_positives
-false_negatives<-cm[1,1]
+false_negatives<-cm[2,1]
 false_negatives
 
-true_positives<-cm[2,2]
+true_positives<-cm[1,1]
 true_positives
-true_negatives<-cm[1,2]
+true_negatives<-cm[2,2]
 true_negatives
 
-precision <-true_positives/ (true_positives + false_positives)
-precision
+specificity(cm)
 
 recall <-true_positives/ (true_positives + false_negatives)
 recall
+
+precision <-true_positives/ (true_positives + false_positives)
+precision
 
 Fmeasure <- (2*precision*recall) / (precision + recall)
 Fmeasure
