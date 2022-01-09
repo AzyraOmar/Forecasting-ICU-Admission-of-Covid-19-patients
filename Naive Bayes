@@ -45,7 +45,7 @@ head(data) # Check first 6 rows after substitution by mean
 #Step 5 : Data Modelling
 # Splitting data into train
 # and test data
-split <- sample.split(data, SplitRatio = 0.7)
+split <- sample.split(data, SplitRatio = 0.70)
 train_cl <- subset(data, split == "TRUE")
 test_cl <- subset(data, split == "FALSE")
 
@@ -58,23 +58,23 @@ y_pred <- predict(NB_model, newdata = test_cl)
 
 #Step 6 : Model Evaluation
 # Confusion Matrix
-cm <- table(y_pred, test_cl$ICU)
-cm
+cm_nb <- table(y_pred, test_cl$ICU)
+cm_nb
 
 # Model Evaluation
-confusionMatrix(cm)
+confusionMatrix(cm_nb)
 
-false_positives<-cm[1,2]
+false_positives<-cm_nb[1,2]
 false_positives
-false_negatives<-cm[2,1]
+false_negatives<-cm_nb[2,1]
 false_negatives
 
-true_positives<-cm[1,1]
+true_positives<-cm_nb[1,1]
 true_positives
-true_negatives<-cm[2,2]
+true_negatives<-cm_nb[2,2]
 true_negatives
 
-specificity(cm)
+specificity(cm_nb)
 
 recall <-true_positives/ (true_positives + false_negatives)
 recall
