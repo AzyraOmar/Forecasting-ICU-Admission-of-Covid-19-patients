@@ -42,6 +42,10 @@ for(i in 1:ncol(data)) {
 }
 head(data) # Check first 6 rows after substitution by mean
 
+!is.null(data)
+data<-data
+head(data)
+
 #Step 5 : Data Modelling
 # Splitting data into train
 # and test data
@@ -75,6 +79,7 @@ true_negatives<-cm_nb[2,2]
 true_negatives
 
 specificity(cm_nb)
+sensitivity(cm_nb)
 
 recall <-true_positives/ (true_positives + false_negatives)
 recall
