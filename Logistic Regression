@@ -85,17 +85,21 @@ print(paste('Accuracy =', 1 - missing_classerr))
 
 confusionMatrix(cm_lr)
 
-false_positives<-cm_lr[1,2]
-false_positives
-false_negatives<-cm_lr[2,1]
+false_negatives<-cm_lr[1,2]
 false_negatives
+false_positives<-cm_lr[2,1]
+false_positives
 
-true_positives<-cm_lr[1,1]
-true_positives
-true_negatives<-cm_lr[2,2]
+true_negatives<-cm_lr[1,1]
 true_negatives
+true_positives<-cm_lr[2,2]
+true_positives
 
 specificity(cm_lr)
+sensitivity(cm_lr)
+
+accuracy <- (true_positives + true_negatives) / (true_positives + false_negatives + false_positives + true_negatives)
+accuracy
 
 recall <-true_positives/ (true_positives + false_negatives)
 recall
@@ -105,5 +109,4 @@ precision
 
 Fmeasure <- (2*precision*recall) / (precision + recall)
 Fmeasure
-
 
