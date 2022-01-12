@@ -85,6 +85,10 @@ true_negatives
 specificity(cm_svm)
 sensitivity(cm_svm)
 
+
+accuracy <- (true_positives + true_negatives) / (true_positives + false_negatives + false_positives + true_negatives)
+accuracy
+
 recall <-true_positives/ (true_positives + false_negatives)
 recall
 
